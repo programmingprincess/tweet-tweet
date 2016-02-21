@@ -11,7 +11,7 @@ The following **required** functionality is completed:
 - [X] User can sign in using OAuth login flow
 - [X] User can view last 20 tweets from their home timeline
 - [X] The current signed in user will be persisted across restarts
-- [X] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
+- [] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
 - [] Retweeting and favoriting should increment the retweet and favorite count.
 
 The following **optional** features are implemented:
@@ -33,17 +33,17 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/iCMP4cv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I was unable to get the actual Twitter content to show up inside my table view cell. The content shows up on the console, but not on the actual app. The basic functionalities (logging in, authorizing, and logging out) works. I tried to implement the retweet and favorite functions, but was unable to test them because the labels did not show up. 
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2016] [Jiaqi Wu]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
