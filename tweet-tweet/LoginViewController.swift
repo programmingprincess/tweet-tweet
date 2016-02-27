@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {

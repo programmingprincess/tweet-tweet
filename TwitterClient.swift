@@ -11,8 +11,6 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
-
-    
     static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com"), consumerKey: "FnnLY3dGtAjT805JZHNegU3a6", consumerSecret: "3NgzPkfn3BneD6Vj9uPk16tT1b9B3Z1O9bkoovUdd83Rf8WRg3")
     
     var loginSuccess: (() -> ())?
@@ -53,9 +51,9 @@ class TwitterClient: BDBOAuth1SessionManager {
             let tweets = Tweet.tweetsWithArray(dictionaries)
                 success(tweets)
             
-            for tweet in tweets {
-                print("\(tweet.text!)")
-            }
+            //for tweet in tweets {
+            //    print("\(tweet.text!)")
+            //}
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 failure(error)
             })
@@ -70,9 +68,9 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             success(user)
             
-            print("name: \(user.name)")
-            print("username: \(user.screename)")
-            print("profile url: \(user.profileUrl)")
+           // print("name: \(user.name)")
+           // print("username: \(user.screename)")
+           // print("profile url: \(user.profileUrl)")
             print("description: \(user.tagline)")
             
             }, failure: {( task: NSURLSessionDataTask?, error: NSError) -> Void in
@@ -103,7 +101,29 @@ class TwitterClient: BDBOAuth1SessionManager {
         User.currentUser = nil
         deauthorize()
         
-        NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotification, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
+    
+    //retweet and like
+    func retweet(id: Int, params: NSDictionary?, completion: (error: NSError?) -> () ){
+        POST("1.1/statuses/retweet/\(id).json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("Retweeted tweet with id: \(id)")
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Couldn't retweet")
+                completion(error: error)
+            }
+        )
+    }
+    
+    func likeTweet(id: Int, params: NSDictionary?, completion: (error: NSError?) -> () ){
+        POST("1.1/favorites/create.json?id=\(id)", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("Liked tweet with id: \(id)")
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Couldn't like tweet")
+                completion(error: error)
+            }
+        )}
 
 }

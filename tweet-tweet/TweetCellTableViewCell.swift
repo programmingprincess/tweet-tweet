@@ -7,123 +7,93 @@
 //
 
 import UIKit
+import AFNetworking
 
 class TweetCellTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var screenNameLabel: UILabel!
     
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userNameHandle: UILabel!
+
+    @IBOutlet weak var tweetContent: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var tweetContent: UILabel!
     @IBOutlet weak var retweetLabel: UILabel!
-    @IBOutlet weak var favesLabel: UILabel!
     
-    @IBOutlet weak var rtButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
     
     @IBOutlet weak var favesButton: UIButton!
+    @IBOutlet weak var favoritesLabel: UILabel!
+    
     @IBOutlet weak var replyButton: UIButton!
     
     
-    
-    /*
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var screenNameLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timeAgoLabel: UILabel!
-    @IBOutlet weak var tweetTextLabel: UILabel!
-    @IBOutlet weak var retweetCountLabel: UILabel!
-    @IBOutlet weak var favouriteCountLabel: UILabel!
-    @IBOutlet weak var replyButton: UIButton!
-    @IBOutlet weak var retweetButton: UIButton!
-    @IBOutlet weak var favouriteButton: UIButton!
-    */
-    var didRetweet = false
-    var didTouchFavourite = false
-    
-    var tweetId: Int!
+    var tweetID: String = ""
     
     var tweet: Tweet! {
-        didSet {
-            tweetId = tweet.id
-            let url = NSURL( string: ( tweet.user?.profileImageUrl!)! )
-            print(url!)
-            profileImage.setImageWithURL(url!)
-            screenNameLabel.text = "@\((tweet.user?.screenName)!)"
-            nameLabel.text = tweet.user?.name
-            tweetContent.text = tweet.text
-            RTcount.text = String(tweet.retweetCount!)
-            favesLabel.text = String(tweet.favouriteCount!)
-            dateLabel.text = durationString(tweet.createdAt!)
-        }
-    }
-    
-    @IBAction func onReply(sender: AnyObject) {
-        print("onReply clicked")
-        //TODO: create a reply feature
-    }
-    
-    @available(iOS, deprecated=8.0)
-    @IBAction func onRetweet(sender: AnyObject) {
-        if !didRetweet {
-            //perform retweet logics
-            TwitterClient.sharedInstance.retweetStatus(tweetId) { error in
-                self.tweet.retweetCount! += 1
-                self.retweetButton.setImage(UIImage(named: "RetweetIconOn"), forState: .Normal)
-                self.retweetCountLabel.text = "\(self.tweet.retweetCount!)"
-                self.didRetweet = true
-            }
-        } else {
-            //un retweet, if successful, decrement
-            TwitterClient.sharedInstance.unretweetStatus(tweetId) { error in
-                
-            }
-        }
-    }
-    
-    func durationString(createdAt: NSDate?) -> String {
-        let durationAgo = (moment() - moment(createdAt!))
-        if durationAgo.hours >= 24 {
-            return "\(Int(durationAgo.days))d"
-        } else if durationAgo.minutes >= 60 {
-            return "\(Int(durationAgo.hours))h"
-        } else if durationAgo.seconds >= 60 {
-            return "\(Int(durationAgo.minutes))m"
-        } else {
-            return "1m"
-        }
-    }
-    
-    @available(iOS, deprecated=8.0)
-    @IBAction func onFavourite(sender: AnyObject) {
         
-        if !didTouchFavourite {
-            //call favourite
-            TwitterClient.sharedInstance.favoriteStatus(tweetId) { errror in
-                self.didTouchFavourite = true
-                self.tweet.favouriteCount! += 1
-                self.favouriteButton.setImage(UIImage(named: "LikeIconOn"), forState: .Normal)
-                self.favouriteCountLabel.text = "\(self.tweet.favouriteCount!)"
-            }
-        } else {
-            //call unfavouriteStatus
-            TwitterClient.sharedInstance.unfavoriteStatus(tweetId) { error in
-                self.didTouchFavourite = false
-                self.tweet.favouriteCount! -= 1
-                self.favouriteButton.setImage(UIImage(named: "LikeIcon"), forState: .Normal)
-                self.favouriteCountLabel.text = "\(self.tweet.favouriteCount!)"
-            }
+        didSet {
+            userNameLabel.text = "\((tweet.user?.name)!)"
+            userNameHandle.text = "@" + "\((tweet.user?.screenname)!)"
+            tweetContent.text = tweet.text!
+            //dateLabel.text = "\(tweet.createdAt!)"
+            dateLabel.text = calculateTimeStamp(tweet.createdAt!.timeIntervalSinceNow)
+            
+            //Retrieving the image
+            let imageUrl = NSURL(string: (tweet!.user!.profileImageUrl)!)
+            print("imageUrl: \(imageUrl)")
+            profilePictureImageView.setImageWithURL(imageUrl!)
+            
+            tweetID = tweet.id
+            retweetLabel.text = String(tweet.retweetCount!)
+            favoritesLabel.text = String(tweet.favoritesCount!)
+            
+            retweetLabel.text! == "0" ? (retweetLabel.hidden = true) : (retweetLabel.hidden = false)
+            favoritesLabel.text! == "0" ? (favoritesLabel.hidden = true) : (favoritesLabel.hidden = false)
+            
+            
         }
+    }
+    
+    
+    //This function is courtsey of @r3dcrosse
+    func calculateTimeStamp(timeTweetPostedAgo: NSTimeInterval) -> String {
+        // Turn timeTweetPostedAgo into seconds, minutes, hours, days, or years
+        var rawTime = Int(timeTweetPostedAgo)
+        var timeAgo: Int = 0
+        var timeChar = ""
+        
+        rawTime = rawTime * (-1)
+        
+        // Figure out time ago
+        if (rawTime <= 60) { // SECONDS
+            timeAgo = rawTime
+            timeChar = "s"
+        } else if ((rawTime/60) <= 60) { // MINUTES
+            timeAgo = rawTime/60
+            timeChar = "m"
+        } else if (rawTime/60/60 <= 24) { // HOURS
+            timeAgo = rawTime/60/60
+            timeChar = "h"
+        } else if (rawTime/60/60/24 <= 365) { // DAYS
+            timeAgo = rawTime/60/60/24
+            timeChar = "d"
+        } else if (rawTime/(3153600) <= 1) { // YEARS
+            timeAgo = rawTime/60/60/24/365
+            timeChar = "y"
+        }
+        
+        return "\(timeAgo)\(timeChar)"
     }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-        //set tweetId
+        //profilePictureImageView.layer.cornerRadius = 3
+        //profilePictureImageView.clipsToBounds = true
+
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -131,5 +101,34 @@ class TweetCellTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        TwitterClient.sharedInstance.retweet(Int(tweetID)!, params: nil, completion: {(error) -> () in
+            self.retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Selected)
+            
+            if self.retweetLabel.text! > "0" {
+                self.retweetLabel.text = String(self.tweet.retweetCount! + 1)
+            } else {
+                self.retweetLabel.hidden = false
+                self.retweetLabel.text = String(self.tweet.retweetCount! + 1)
+            }
+        })
+    }
+    
+    //The two following fuctions are curtsey of @r3dcrosse from gitHub
 
+    @IBAction func onLike(sender: AnyObject) {
+        TwitterClient.sharedInstance.likeTweet(Int(tweetID)!, params: nil, completion: {(error) -> () in
+            self.favesButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Selected)
+            
+            if self.favoritesLabel.text! > "0" {
+                self.favoritesLabel.text = String(self.tweet.favoritesCount! + 1)
+            } else {
+                self.favoritesLabel.hidden = false
+                self.favoritesLabel.text = String(self.tweet.favoritesCount! + 1)
+            }
+        })
+    }
 }
+    
