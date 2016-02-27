@@ -105,22 +105,22 @@ class TweetCellTableViewCell: UITableViewCell {
     
     @IBAction func onRetweet(sender: AnyObject) {
         TwitterClient.sharedInstance.retweet(Int(tweetID)!, params: nil, completion: {(error) -> () in
-            self.retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Selected)
+            //self.retweetButton.setImage(UIImage(named: "retweet-icon"), forState: UIControlState.Selected)
             
             if self.retweetLabel.text! > "0" {
+                //show label if greater than 0
                 self.retweetLabel.text = String(self.tweet.retweetCount! + 1)
             } else {
+                //show and increment count when retweeted
                 self.retweetLabel.hidden = false
                 self.retweetLabel.text = String(self.tweet.retweetCount! + 1)
             }
         })
     }
-    
-    //The two following fuctions are curtsey of @r3dcrosse from gitHub
 
     @IBAction func onLike(sender: AnyObject) {
         TwitterClient.sharedInstance.likeTweet(Int(tweetID)!, params: nil, completion: {(error) -> () in
-            self.favesButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Selected)
+            //self.favesButton.setImage(UIImage(named: "like-icon"), forState: UIControlState.Selected)
             
             if self.favoritesLabel.text! > "0" {
                 self.favoritesLabel.text = String(self.tweet.favoritesCount! + 1)

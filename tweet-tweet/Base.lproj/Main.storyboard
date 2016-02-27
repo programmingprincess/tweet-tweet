@@ -174,9 +174,9 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="AcG-dZ-u4l"/>
                                                     <exclude reference="2fn-t4-mxy"/>
                                                     <exclude reference="z7M-gL-1g2"/>
+                                                    <exclude reference="AcG-dZ-u4l"/>
                                                     <exclude reference="o9i-2m-9Av"/>
                                                     <exclude reference="reZ-lA-b4T"/>
                                                     <exclude reference="2kk-UV-3gp"/>
