@@ -27,7 +27,7 @@ class Tweet: NSObject {
         
         //The time is given as greenich mean time, and we need to parse it
         //We use the documentation for NSFormatter, and twitter's guidlines
-        var formatter = NSDateFormatter()
+        let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
         

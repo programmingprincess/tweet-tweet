@@ -43,7 +43,7 @@ class TweetCellTableViewCell: UITableViewCell {
             
             //Retrieving the image
             let imageUrl = NSURL(string: (tweet!.user!.profileImageUrl)!)
-            print("imageUrl: \(imageUrl)")
+
             profilePictureImageView.setImageWithURL(imageUrl!)
             
             tweetID = tweet.id
