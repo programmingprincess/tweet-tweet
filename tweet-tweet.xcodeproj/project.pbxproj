@@ -10,6 +10,8 @@
 		1A219136B052E0EE07EB6130 /* Pods_tweet_tweet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C8B213625ABA0DEA3E3E78 /* Pods_tweet_tweet.framework */; };
 		A9793E151C826C3300FA8971 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9793E141C826C3300FA8971 /* ProfileViewController.swift */; };
 		A9793E181C8271BB00FA8971 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9793E161C8271BB00FA8971 /* Main.storyboard */; };
+		A986B3A51C82C3AA00B45163 /* ProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A986B3A41C82C3AA00B45163 /* ProfileImageViewController.swift */; };
+		A986B3A71C82CAB100B45163 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A986B3A61C82CAB100B45163 /* ComposeViewController.swift */; };
 		A9E133B51C821B9C0082A504 /* DetailedTweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E133B41C821B9B0082A504 /* DetailedTweetsViewController.swift */; };
 		A9EA57FB1C790B1C0084DF24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EA57FA1C790B1C0084DF24 /* AppDelegate.swift */; };
 		A9EA58021C790B1C0084DF24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9EA58011C790B1C0084DF24 /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		09C8B213625ABA0DEA3E3E78 /* Pods_tweet_tweet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tweet_tweet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9793E141C826C3300FA8971 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A9793E171C8271BB00FA8971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A986B3A41C82C3AA00B45163 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
+		A986B3A61C82CAB100B45163 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		A9E133B41C821B9B0082A504 /* DetailedTweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedTweetsViewController.swift; sourceTree = "<group>"; };
 		A9EA57F71C790B1C0084DF24 /* tweet-tweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tweet-tweet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EA57FA1C790B1C0084DF24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				A9F987621C79835500CED9B4 /* TweetCellTableViewCell.swift */,
 				A9E133B41C821B9B0082A504 /* DetailedTweetsViewController.swift */,
 				A9793E141C826C3300FA8971 /* ProfileViewController.swift */,
+				A986B3A41C82C3AA00B45163 /* ProfileImageViewController.swift */,
+				A986B3A61C82CAB100B45163 /* ComposeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -257,9 +263,11 @@
 			files = (
 				A9EA58131C7925C00084DF24 /* User.swift in Sources */,
 				A9EA58151C7925CB0084DF24 /* Tweet.swift in Sources */,
+				A986B3A51C82C3AA00B45163 /* ProfileImageViewController.swift in Sources */,
 				A9EA580D1C790BAC0084DF24 /* LoginViewController.swift in Sources */,
 				A9F987631C79835500CED9B4 /* TweetCellTableViewCell.swift in Sources */,
 				A9E133B51C821B9C0082A504 /* DetailedTweetsViewController.swift in Sources */,
+				A986B3A71C82CAB100B45163 /* ComposeViewController.swift in Sources */,
 				A9F987611C796F9100CED9B4 /* TweetsViewController.swift in Sources */,
 				A9793E151C826C3300FA8971 /* ProfileViewController.swift in Sources */,
 				A9EA58171C792B7C0084DF24 /* TwitterClient.swift in Sources */,

@@ -12,6 +12,7 @@ import UIKit
 let currentUserKey = "kCurrentUserKey"
 let userDidLoginNotification = "userDidLoginNotification"
 let userDidLogoutNotification = "userDidLogoutNotification"
+
 //Hacking the currentUser class
 var _currentUser: User?
 
@@ -21,16 +22,26 @@ class User: NSObject {
     var screenname: String?
     var profileImageUrl: String?
     var tagline: String?
+    var backgroundImageUrl: String?
     //for fun we will also include the actual dictionary
     var dictionary: NSDictionary
+    var numFollowers: Int
+    var numFollowing: Int
+    var numTweets: Int
+    
     
     init( dictionary: NSDictionary) {
         self.dictionary = dictionary
+
+        numFollowers = (dictionary["followers_count"] as? Int)!
+        numFollowing = (dictionary["friends_count"] as? Int)!
+        numTweets = (dictionary["statuses_count"] as? Int)!
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url_https"] as? String
         tagline = dictionary["description"] as? String
+        backgroundImageUrl = dictionary["profile_banner_url"] as? String
     }
     
     func logout() {

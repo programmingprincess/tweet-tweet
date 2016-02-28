@@ -52,8 +52,6 @@ class TweetCellTableViewCell: UITableViewCell {
             
             retweetLabel.text! == "0" ? (retweetLabel.hidden = true) : (retweetLabel.hidden = false)
             favoritesLabel.text! == "0" ? (favoritesLabel.hidden = true) : (favoritesLabel.hidden = false)
-            
-            
         }
     }
     

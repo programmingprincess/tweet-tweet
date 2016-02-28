@@ -18,19 +18,30 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var numTweets: UILabel!
     @IBOutlet weak var numFollowing: UILabel!
     @IBOutlet weak var numFollowers: UILabel!
+    @IBOutlet weak var imageButton: UIButton!
     
     @IBOutlet weak var tweetsTableView: UITableView!
     
     var tweets: [Tweet]!
+
     var tweet: Tweet!
     var tweetID: String = ""
+    
+    var meirl: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //nameLabel.text = "\((tweet.user?.name)!)"
+        meirl = User.currentUser!
         
+        nameLabel.text = meirl.name
+        handleLabel.text = "@\(meirl.screenname!)"
+        profilePic.setImageWithURL(NSURL(string: meirl.profileImageUrl!)!)
+        backgroundPic.setImageWithURL(NSURL(string: meirl.backgroundImageUrl!)!)
         
+        numTweets.text = "\(meirl.numTweets)"
+        numFollowing.text = "\(meirl.numFollowing)"
+        numFollowers.text = "\(meirl.numFollowers)"
         
         
         tweetsTableView.delegate = self
@@ -38,8 +49,27 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
         tweetsTableView.estimatedRowHeight = 120
         
+        
+        /*TwitterClient.sharedInstance.userTimeline({(tweets: [Tweet]) -> () in
+            self.tweets = tweets
+            
+            for tweet in tweets {
+                //tested: this works
+                print(tweet.text)
+            }
+            
+            self.tweetsTableView.reloadData()
+            
+            }, failure: { (error: NSError) -> () in
+                print(error.localizedDescription)
+        })
+        
+        */
         // Do any additional setup after loading the view.
     }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,14 +90,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let imageUrl =  meirl.profileImageUrl!
+        
+        let detailViewController = segue.destinationViewController as! ProfileImageViewController
+            
+        detailViewController.imageUrl = imageUrl
+        
+        
     }
-    */
+    
 
 }
