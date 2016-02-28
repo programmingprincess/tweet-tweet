@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        meirl = User.currentUser!
+        //meirl = User.currentUser!
         
         nameLabel.text = meirl.name
         handleLabel.text = "@\(meirl.screenname!)"

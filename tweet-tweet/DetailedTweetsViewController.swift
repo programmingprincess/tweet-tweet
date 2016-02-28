@@ -89,14 +89,18 @@ class DetailedTweetsViewController: UIViewController {
         
         return "\(timeAgo)\(timeChar)"
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let profileViewController = segue.destinationViewController as! ProfileViewController
+        
+        profileViewController.meirl = tweet.user
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

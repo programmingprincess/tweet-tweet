@@ -78,6 +78,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let detailViewController = segue.destinationViewController as! DetailedTweetsViewController
         
             detailViewController.tweet = tweet
+        } else {
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+            
+            profileViewController.meirl = User.currentUser
         }
     }
 

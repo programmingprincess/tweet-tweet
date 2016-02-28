@@ -621,6 +621,12 @@
                                 <rect key="frame" x="144" y="281" width="30" height="30"/>
                                 <state key="normal" title="RT"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDI-67-ilT">
+                                <rect key="frame" x="7" y="72" width="64" height="65"/>
+                                <connections>
+                                    <segue destination="2AT-Fb-P2K" kind="push" id="TI2-bV-A0s"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -707,4 +713,7 @@
             <point key="canvasLocation" x="881" y="-334"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TI2-bV-A0s"/>
+    </inferredMetricsTieBreakers>
 </document>
