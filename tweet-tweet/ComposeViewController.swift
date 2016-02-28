@@ -10,6 +10,8 @@ import UIKit
 
 class ComposeViewController: UIViewController {
     
+    @IBOutlet weak var textArea: UITextView!
+    @IBOutlet weak var sendButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,18 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onSubmit(sender: AnyObject) {
+        
+    TwitterClient.sharedInstance.composeMe(textArea.text, success: { () -> () in
+            print("successfully tweeted")
+            }) { (error: NSError) -> () in
+                print(error.localizedDescription)
+        }
+        
+        
+        
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
