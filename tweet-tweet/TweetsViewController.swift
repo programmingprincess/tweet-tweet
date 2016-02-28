@@ -79,9 +79,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
             detailViewController.tweet = tweet
         } else {
-            let profileViewController = segue.destinationViewController as! ProfileViewController
+            if let profileViewController = segue.destinationViewController as? ProfileViewController {
             
             profileViewController.meirl = User.currentUser
+            }
         }
     }
 
