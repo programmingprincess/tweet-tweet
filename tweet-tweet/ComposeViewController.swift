@@ -24,6 +24,10 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onHome(sender: AnyObject) {
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func onSubmit(sender: AnyObject) {
         
     TwitterClient.sharedInstance.composeMe(textArea.text, success: { () -> () in
@@ -31,9 +35,6 @@ class ComposeViewController: UIViewController {
             }) { (error: NSError) -> () in
                 print(error.localizedDescription)
         }
-        
-        
-        
         navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 

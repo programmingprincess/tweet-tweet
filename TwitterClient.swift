@@ -60,8 +60,8 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     
-    func userTimeline(success: ([Tweet]) -> (), failure: NSError ->() ) {
-        GET("1.1/statuses/user_timeline.json", parameters: nil, progress: nil, success: {( task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+    func userTimeline(myUser: String, success: ([Tweet]) -> (), failure: NSError ->() ) {
+        GET("1.1/statuses/user_timeline.json", parameters: ["screen_name": myUser], progress: nil, success: {( task: NSURLSessionDataTask, response: AnyObject?) -> Void in
             let dictionaries = response as! [NSDictionary]
             //tweets are an array of NSDict
             

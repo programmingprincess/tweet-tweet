@@ -50,7 +50,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tweetsTableView.estimatedRowHeight = 120
         
         
-        /*TwitterClient.sharedInstance.userTimeline({(tweets: [Tweet]) -> () in
+        TwitterClient.sharedInstance.userTimeline(meirl.screenname!, success: {(tweets: [Tweet]) -> () in
             self.tweets = tweets
             
             for tweet in tweets {
@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 print(error.localizedDescription)
         })
         
-        */
+
         // Do any additional setup after loading the view.
     }
     
