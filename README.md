@@ -63,7 +63,7 @@ I was unable to get the actual Twitter content to show up inside my table view c
 
 # Project 5 - *Tweet Tweet*
 
-Time spent: **6** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
